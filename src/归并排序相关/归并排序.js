@@ -1,0 +1,40 @@
+// 在理解归并排序，先理解下递归：
+
+// 实际上，递归在系统层面的表现就是不断的调用函数自身，调用自身的同时不断将函数压入执行栈（保存着函数的一系列执行信息），直到命中了递归出口，这时候栈顶的函数出栈，返回到栈的下一层执行，一直执行并出栈，直到栈底的函数（也就是第一次的函数调用）返回。
+
+function sort(arr){ // 这个函数的作用其实就是获取数组的 l，r，第一次调用 mergeSort 并传入
+  const len = arr.length
+  if(arr === null || len < 2) return 
+  return mergeSort(arr, 0, len - 1)
+}
+
+function mergeSort(arr, l, r){
+  if(l === r) return
+  
+  const mid = Math.floor(l + ((r - l) >> 1))  // 将 r-l 右移一位，得到 (r-l)/2
+  // l+((r-l)/2) 比 (r+l)/2 安全，减少了溢出的风险
+  mergeSort(arr, l, mid)
+  mergeSort(arr, mid + 1, r)
+  merge(arr, l, mid, r)
+  return arr
+}
+
+// 利用外排的方式，在两个有序子块中设两个头指针，谁小就存谁，存的同时指针后移
+function merge(arr, l, mid, r){
+  let p1 = l, p2 = mid + 1
+  let temp = [], i = 0
+  while(p1 <= mid && p2 <= r){
+    temp[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++]
+  }
+  // 其中一个子块存完后，将有剩余的子块的元素存入，两个 while 只会执行其中一个
+  while(p1 <= mid){
+    temp[i++] = arr[p1++]
+  }
+  while(p2 <= r){
+    temp[i++] = arr[p2++]
+  }
+  // 将临时数组中的值拷贝入原数组
+  for (i = 0; i < temp.length; i++) {
+    arr[l + i] = temp[i];
+  }
+}

@@ -1,0 +1,57 @@
+// 数组小和问题
+// 在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组 的小和。 
+
+// 例子：
+
+// [1,3,4,2,5] 1左边比1小的数，没有； 
+// 3左边比3小的数，1； 
+// 4左边比4小的数，1、3； 
+// 2左边比2小的数，1； 
+// 5左边比5小的数，1、3、4、2； 
+// 所以小和为1+1+3+1+1+3+4+2=16
+
+
+// 思路：在归并排序的过程中，我们通过递归不断将数组分为左块和右块，最终达到递归的出口，在 merge 的的过程中，其实我们已经进行了左块和右块中元素的比对操作了：
+
+// 当 arr[p1] < arr[p2] 的时候，由于右块已经排好序了（升序），说明 p2 右边的元素全都比 arr[p1] 大，这时候我们累加小和 ```arr[p1] * (r - p2 + 1)```。
+
+// 当两个小块 merge 完后，原先的左块和右块的元素不会再进行比较，他们会被 merge 为一个整块。
+
+
+function smallSum(arr){
+  if (arr == null || arr.length < 2) {
+    return 0;
+  }
+  return mergeSort(arr, 0, arr.length - 1)
+}
+
+function mergeSort(arr, l, r){
+  if(l === r) return 0
+
+  const mid = Math.floor(l + ((r - l) >> 1))
+  return mergeSort(arr, l, mid) + mergeSort(arr, mid + 1, r) + merge(arr, l, mid, r)  // 返回左块的小和 + 右块的小和 + merge 左右块产生的小和
+}
+
+function merge(arr, l, m, r){
+  let p1 = l, p2 = m + 1
+  let temp = [], i = 0
+  let sum = 0
+  while(p1 <= m && p2 <= r){
+    if(arr[p1] < arr[p2]){
+      sum += arr[p1] * (r - p2 + 1) // 累加小和
+      temp[i++] = arr[p1++]
+    }else {
+      temp[i++] = arr[p2++]
+    }
+  }
+  while(p1 <= m){
+    temp[i++] = arr[p1++]
+  }
+  while(p2 <= r){
+    temp[i++] = arr[p2++]
+  }
+  for (i = 0; i < temp.length; i++) {
+    arr[l + i] = temp[i];
+  }
+  return sum
+}
