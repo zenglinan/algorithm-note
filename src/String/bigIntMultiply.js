@@ -17,7 +17,7 @@ function bigIntMul(s1, s2) {
       let sum = (res[i + j + 1] || 0) + s1[i] * s2[j] // i 位和 j 位之间相乘，加到 i + j + 1 位上
       res[i + j + 1] = sum % 10
       // 如果上一位（进位）未初始化，直接初始化，如果有值则进行相加
-      res[i + j] = !res[i + j] ? Math.floor(sum / 10) : res[i + j] + Math.floor(sum / 10) 
+      res[i + j] = !res[i + j] ? Math.floor(sum / 10) : res[i + j] + Math.floor(sum / 10)
     }
   }
   res = res.join('')

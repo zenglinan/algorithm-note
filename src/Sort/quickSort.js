@@ -6,13 +6,18 @@ function quickSort(arr) {
 }
 
 function sortProcess(arr, l, r) {
-  if(l < r) {
-    const randomIdx = l + Math.round(Math.random() * (r - l))
-    swap(arr, randomIdx, r)
-  
-    const equalIdx = partition(arr, l, r, arr[r]) // 相等区域的边界
-    sortProcess(arr, l, equalIdx[0] - 1)
-    sortProcess(arr, equalIdx[1] + 1, r)
+  let stack = [r, l]
+  while(stack.length) {
+    let l = stack.pop()
+    let r = stack.pop()
+    if(l < r) {
+      const randomIdx = l + Math.round(Math.random() * (r - l))
+      swap(arr, randomIdx, r)
+    
+      const equalIdx = partition(arr, l, r, arr[r]) // 得到相等区域的边界
+      stack.push(equalIdx[0] - 1, l)
+      stack.push(r, equalIdx[1] + 1)
+    }
   }
 }
 

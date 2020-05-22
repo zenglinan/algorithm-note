@@ -1,3 +1,9 @@
+/**
+ * 找出数组中所有的逆序对（左边的数大于右边的时候，两个数组成逆序对）
+ * 
+ * @param {Array} arr 
+ */
+
 // 用归并排序的 merge 过程，期间：左半区的p1数大于右半区p2数时，说明此时p1后面的数都能和p2数组成逆序对。
 function reversePair(arr) {
   const len = arr.length

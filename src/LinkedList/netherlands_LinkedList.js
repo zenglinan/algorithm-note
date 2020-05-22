@@ -1,5 +1,6 @@
 /*
 * 给定一个单向链表的头节点head，节点的值类型是整型，再给定一个整数pivot，将链表划分为大于、等于、小于区域。
+* 思路：遍历一遍链表，放入数组中进行 partation，然后再放回链表
 */
 
 function netherlangs(head, pivot) {

@@ -1,3 +1,8 @@
+/**
+ * 在一个数组中，每一个数左边比当前数小的数“累加”起来，叫做这个数组的小和。求一个数组的小和。
+ * @param {Array} arr 
+ */
+
 function smallSum(arr) {
   const len = arr.length
   if(arr === null || len < 2) return 0
@@ -86,9 +91,9 @@ function test(times) {
     let arr1 = generateRandomArr(10, 1000)
     let arr2 = copy(arr1)
     let arr3 = copy(arr1)
-    
     let sum1 = smallSum(arr2)
     let sum2 = rightMethod(arr3)
+    console.log(arr1, sum2)
     if(!isEqual(sum1, sum2)){
       success = false
       console.log('error:')
@@ -101,4 +106,4 @@ function test(times) {
   if(success) console.log('OK')
 }
 
-test(200000)
+test(2)

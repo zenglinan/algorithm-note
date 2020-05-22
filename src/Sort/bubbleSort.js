@@ -5,11 +5,15 @@ function bubbleSort(arr){
   }
 
   for(let i = len - 1; i > 0; i --){
+    let done = true
     for(let j = 0; j < i; j ++){
       if(arr[j] > arr[j+1]){
+        done = false
         swap(arr, j, j+1)
       }
     }
+
+    if(done) break
   }
   
   return arr

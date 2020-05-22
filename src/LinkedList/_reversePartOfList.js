@@ -10,7 +10,8 @@
 输出: 1->4->3->2->5->NULL
 
 * 思路：如果 m = 1 时，情况和普通翻转链表一样，如果 m > 1 时，则是翻转链表中间的一部分，所以在开头加上一个头结点，统一按第二种情况处理
-* 找到 m - 1, m, n, n + 1 四个节点，n 节点指向 null，m 节点作为循环的起始节点(cur = mNode)，n + 1 节点作为目标 next 节点(tar = n+1Node)
+* 找到 m - 1, m, n, n + 1 四个节点，n 节点的 next 指向 null，
+* m 节点作为循环的起始节点(cur = mNode)，n + 1 节点作为目标 next 节点(tar = n+1Node)
 * 循环：当 cur 不为 null 的时候，不断将 cur.next 指向 tar，tar不断往前移，cur不断往后移
 * 循环完：2 -> 3 -> 4 -> 5 变成了 4 -> 3 -> 2 -> 5，只需要将 m - 1 节点连起来即可
 * */
@@ -40,4 +41,4 @@ var reverseBetween = function(head, m, n) {
   }
   p.next = q
   return headNode.next
-};
+}
