@@ -93,7 +93,6 @@ function test(times) {
     let arr3 = copy(arr1)
     let sum1 = smallSum(arr2)
     let sum2 = rightMethod(arr3)
-    console.log(arr1, sum2)
     if(!isEqual(sum1, sum2)){
       success = false
       console.log('error:')
@@ -106,4 +105,4 @@ function test(times) {
   if(success) console.log('OK')
 }
 
-test(2)
+test(2000)

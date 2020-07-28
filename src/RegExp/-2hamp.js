@@ -9,5 +9,5 @@
 function cssStyle2DomStyle(sName) {
   let reg = /(?!^)(-\w{1})/g
   sName = sName.replace(reg, s => s.slice(1).toUpperCase())
-  return sName[0] === '-' ? sName.slice(1) : sName   
+  return sName[0] === '-' ? sName.slice(1) : sName
 }

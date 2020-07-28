@@ -6,17 +6,16 @@
 * 准备快慢指针
 * */
 
-function FindContinuousSequence(sum)
-{
+function FindContinuousSequence(sum) {
   if(sum <= 0) return []
   let p1 = 1, p2 = 2;
   let result = [], curSum;
-  while(p1 < p2) {
+  while(p1 <= p2) {
+    console.log(p1, p2)
     curSum = (p2 - p1 + 1) * ((p2 + p1) / 2)    // 等差数列求和
     if(curSum < sum) {
       p2 ++
-    }
-    else if(curSum === sum) {
+    } else if(curSum === sum) {
       let res = [], i = p1;
       while(i <= p2) {
         res.push(i++)
@@ -30,3 +29,5 @@ function FindContinuousSequence(sum)
   }
   return result
 }
+
+console.log(FindContinuousSequence(100))

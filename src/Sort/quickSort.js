@@ -10,10 +10,9 @@ function sortProcess(arr, l, r) {
   while(stack.length) {
     let l = stack.pop()
     let r = stack.pop()
-    if(l < r) {
+    if(l <= r) {
       const randomIdx = l + Math.round(Math.random() * (r - l))
       swap(arr, randomIdx, r)
-    
       const equalIdx = partition(arr, l, r, arr[r]) // 得到相等区域的边界
       stack.push(equalIdx[0] - 1, l)
       stack.push(r, equalIdx[1] + 1)
@@ -41,7 +40,7 @@ function swap(arr, a, b) {
   let temp = arr[a]
   arr[a] = arr[b]
   arr[b] = temp
-}
+} 
 // for test
 
 // 生成随机长度，元素随机的数组
